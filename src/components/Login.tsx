@@ -11,6 +11,7 @@ const Login = () => {
 
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
+    const [userId, setUID] = useState("")
 
     //supatestmyvc@gmail.com  |  potato200
     const submit = async () => {
@@ -32,27 +33,44 @@ const Login = () => {
             headers: {
               'content-type': 'application/json;charset=UTF-8',
               'apikey': key,
-              'credentials': 'include'
+              'credentials': 'same-origin',
+              'Access-Control-Allow-Origin': 'https://hdwsktohrhulukpzmike.supabase.co'
             },
             body: JSON.stringify({
                 "email": email,
                 "password": pass
               })
-          }).then(response => response.text())
-          .then(result => console.log(result))
+          }).then(response => response.json())
+          .then((result) => {console.log(result); setUID(result.user.id);})
           .catch(error => console.log('error', error));
+
+          console.log(userId)
+
+    }
+
+    const posTest = async () => {
+
+        const { data, error } = await supabase
+        .from('library')
+        .insert([
+          { user_id: userId, game_id: 1559, status: "Test", review: "", score: 0, recommended: false},
+        ])
+
+        console.log(data)
+        console.log(error)
 
     }
 
     return (
         <Box component="form" display={"flex"} sx={{flexDirection: "column", alignItems: "center"}}>
 
-            <TextField id="emailInput" label="Email" variant="outlined" focused={true} inputProps={{autoComplete: 'off'}} sx={{maxWidth:"20%", flexGrow: 1, input: {color: "white"}}} onChange={(event) => {setEmail(event.target.value)}}/>
-            <TextField id="passInput" label="Password" variant="outlined" focused={true} type="password" sx={{maxWidth:"20%", mt:"2rem", input: {color: "white"}}} onChange={(event) => {setPass(event.target.value)}}/>
+            <TextField id="emailInput" label="Email" variant="outlined" focused={true} inputProps={{autoComplete: 'off'}} sx={{maxWidth:"20%", flexGrow: 1, input: {color: "white"}}} onChange={(event: any) => {setEmail(event.target.value)}}/>
+            <TextField id="passInput" label="Password" variant="outlined" focused={true} type="password" sx={{maxWidth:"20%", mt:"2rem", input: {color: "white"}}} onChange={(event: any) => {setPass(event.target.value)}}/>
             <Link to="/Signup" style={{textDecoration: 'none'}}>
                 <p style={{fontSize: "50%", color: "blue"}}>Create an account</p>
             </Link>
-            <Button variant="outlined" sx={{mt:"1rem"}} onClick={submitNoClient}>Submit</Button>
+            <Button variant="outlined" sx={{mt:"1rem"}} onClick={submit}>Submit</Button>
+            <Button variant="outlined" sx={{mt:"1rem"}} onClick={posTest}>Test</Button>
 
         </Box>
     )

@@ -9,7 +9,7 @@ const Skeleton = ({content}: Props) => {
     return (
         <div style={{minWidth: '100%'}}>
             <NavBar/>
-            <br/>
+            <br style={{marginTop:"20%"}}/>
             {content}
         </div>
     )
