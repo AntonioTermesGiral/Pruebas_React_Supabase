@@ -28,8 +28,6 @@ const Games = () => {
       const {data} = await supabase
       .from<gameItem>('game')
       .select('*')
-      //.eq("game_id", 132642)
-      //.single()
 
       console.log(data)
       setData(data!)

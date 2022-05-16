@@ -9,6 +9,7 @@ import Skeleton from "./Skeleton";
 import Games from "./Games";
 import Library from "./Library";
 import Users from "./Users";
+import Profile from "./Profile";
 
 const RouterNav = () => {
 
@@ -21,6 +22,7 @@ const RouterNav = () => {
                 <Route path="/Logout" element={<Skeleton content={<Logout />}/>}/>
                 <Route path="/Library" element={<Skeleton content={<Library />}/>}/>
                 <Route path="/Users" element={<Skeleton content={<Users />}/>}/>
+                <Route path="/Profile" element={<Skeleton content={<Profile />}/>}/>
             </Routes>
         </Router>
     )
