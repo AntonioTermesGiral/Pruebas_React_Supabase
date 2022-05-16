@@ -10,9 +10,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import CookieManager from './CookieManager';
 
 const pages = ['Games', 'Library', 'Users'];
-const settings = ['Login', 'Profile', 'Logout'];
 
 const NavBar = () => {
 
@@ -25,6 +25,14 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  var settings = []
+
+  if(CookieManager.checkCookie("SBRefreshToken")) {
+    settings = ['Profile', 'Logout'];
+  } else {
+    settings = ['Login'];
+  }
 
   return (
     <AppBar position="fixed">

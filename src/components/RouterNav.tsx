@@ -4,8 +4,11 @@ import {
     Route
   } from "react-router-dom";
 import Login from "./Login";
+import Logout from "./Logout";
 import Skeleton from "./Skeleton";
-import Test from "./Test";
+import Games from "./Games";
+import Library from "./Library";
+import Users from "./Users";
 
 const RouterNav = () => {
 
@@ -13,8 +16,11 @@ const RouterNav = () => {
         <Router>
             <Routes>
                 <Route path="*" element={<Skeleton content={<div/>}/>}/>
-                <Route path="/Games" element={<Skeleton content={<Test />}/>}/>
+                <Route path="/Games" element={<Skeleton content={<Games />}/>}/>
                 <Route path="/Login" element={<Skeleton content={<Login />}/>}/>
+                <Route path="/Logout" element={<Skeleton content={<Logout />}/>}/>
+                <Route path="/Library" element={<Skeleton content={<Library />}/>}/>
+                <Route path="/Users" element={<Skeleton content={<Users />}/>}/>
             </Routes>
         </Router>
     )
