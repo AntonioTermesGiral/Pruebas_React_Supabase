@@ -6,7 +6,7 @@ const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZi
 const supabase = createClient('https://hdwsktohrhulukpzmike.supabase.co', key, {
     persistSession: false,
     autoRefreshToken: true
-})
+}) //https://supabase.com/docs/reference/javascript/initializing#with-additional-parameters
 
 type Profile = {
     user_id : string,
