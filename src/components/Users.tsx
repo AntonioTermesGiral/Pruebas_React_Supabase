@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
+import ProfileViewmodel from "../vm/ProfileViewmodel";
 
 type MiniProfile = {
 
@@ -11,17 +11,16 @@ type MiniProfile = {
 
 }
 
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3NrdG9ocmh1bHVrcHptaWtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDk2MDc3MzEsImV4cCI6MTk2NTE4MzczMX0.FK8vTPRkX_ddUd-lijECBpWmLGuFoj7pe89TzvH9Zpk"
-const supabase = createClient('https://hdwsktohrhulukpzmike.supabase.co', key)
-
 const Users = () => {
 
     const [currentUsers, setUsers] = useState<MiniProfile[]>()
     const [searchParam, setSearchParam] = useState<string>("")
 
+    const vm = ProfileViewmodel.getInstance()
+
     const search = async (usrnm: string) => {
 
-        let {data} = await supabase
+        let {data} = await vm.getDB
             .from<MiniProfile>('profile')
             .select('username, avatar_url, library(user_id)')
             .ilike('username', "%" + usrnm + "%")

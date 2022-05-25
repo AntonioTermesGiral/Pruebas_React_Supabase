@@ -1,30 +1,17 @@
 import { Button } from "@mui/material";
-import { createClient } from "@supabase/supabase-js";
-
-// Create a single supabase client for interacting with your database 
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3NrdG9ocmh1bHVrcHptaWtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDk2MDc3MzEsImV4cCI6MTk2NTE4MzczMX0.FK8vTPRkX_ddUd-lijECBpWmLGuFoj7pe89TzvH9Zpk"
-const supabase = createClient('https://hdwsktohrhulukpzmike.supabase.co', key, {
-    persistSession: false,
-    autoRefreshToken: true
-}) //https://supabase.com/docs/reference/javascript/initializing#with-additional-parameters
-
-type Profile = {
-    user_id : string,
-    username: string,
-    avatar_url: string,
-    description: string,
-    country: string,
-    friends: Profile[]
-}
+import ProfileSB from "../models/ProfileModel";
+import ProfileViewmodel from "../vm/ProfileViewmodel";
 
 const Profile = () => {
 
+    const vm = ProfileViewmodel.getInstance()
+    
     const select = async () => {
 
-        let {data} = await supabase
-            .from<Profile>('profile')
+        let {data} = await vm.getDB
+            .from<ProfileSB>('profile')
             .select('user_id, username, avatar_url, description, country:countries(name:name)')
-            .eq('user_id', supabase.auth.session()?.user?.id || "")
+            .eq('user_id', vm.getCurrentUserId || "")
             .single()
     
         console.log(data)
@@ -34,9 +21,9 @@ const Profile = () => {
     //No se puede enlazar una tabla consigo misma asi que se hace otra consulta
     const getFriendList = async () => {
 
-        let currentUser = supabase.auth.session()?.user?.id || ""
+        let currentUser = vm.getCurrentUserId || ""
 
-        let {data} = await supabase
+        let {data} = await vm.getDB
             .from('friendlist')
             .select()
             .or('user.eq.' + currentUser || "" + ',friend.eq.' + currentUser)

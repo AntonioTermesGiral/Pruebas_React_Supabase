@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createClient } from '@supabase/supabase-js'
+import ProfileViewmodel from "../vm/ProfileViewmodel";
 
 type gameItem = {
 
@@ -11,11 +11,9 @@ type gameItem = {
 
 }
 
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhkd3NrdG9ocmh1bHVrcHptaWtlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDk2MDc3MzEsImV4cCI6MTk2NTE4MzczMX0.FK8vTPRkX_ddUd-lijECBpWmLGuFoj7pe89TzvH9Zpk"
-const supabase = createClient('https://hdwsktohrhulukpzmike.supabase.co', key)
-
 const Games = () => {
     const [currentData, setData] = useState<gameItem[]>();
+    const vm = ProfileViewmodel.getInstance()
   
     useEffect(() => {
 
@@ -25,7 +23,7 @@ const Games = () => {
   
     const select = async () => {
       
-      const {data} = await supabase
+      const {data} = await vm.getDB
       .from<gameItem>('game')
       .select('*')
 
