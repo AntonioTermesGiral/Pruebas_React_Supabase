@@ -48,7 +48,7 @@ const Login = () => {
             })
           .catch(error => console.log('error', error))
 
-          supabase.auth.setSession(CookieManager.getCookie("SBRefreshToken"))
+          supabase.auth.setSession(CookieManager.getCookie("SBRefreshToken")) //lo guarda en el ls
           .then(result => console.log(result.session?.user?.id))
           .finally(() => {console.log(supabase.auth.session())})
         
