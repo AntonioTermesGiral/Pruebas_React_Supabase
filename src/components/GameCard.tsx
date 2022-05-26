@@ -17,6 +17,21 @@ type Props = {
 
 const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) => {
 
+    const getFontSize = () => {
+        switch(true) {
+
+            case (title.length > 30):
+                return "1.2em"
+
+            case (title.length > 20):
+                return "1.5em"
+
+            case (title.length <= 20):
+                return  "1.8em"
+            
+        }
+    }
+
     const getScoreColor = () => {
         switch(true) {
             case (score > 60):
@@ -46,17 +61,17 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
                     height= {imageSize}
                     image= {cover}
                     alt="game image"
-                    sx={{
+                    /*sx={{
                     transition: "transform .9s",
                     "&:hover": {
                         transform: "scale(1.4)"
                     }
-                    }}
+                    }}*/
                 />
                 </div>
                 <CardContent>
                 <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div" fontSize={getFontSize()}>
                         {title}
                     </Typography>
                     <Avatar

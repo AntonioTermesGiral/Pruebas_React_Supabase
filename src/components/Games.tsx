@@ -35,7 +35,7 @@ const Games = () => {
     };
   
     return (
-      <Box sx={{display: "flex", flexWrap: "wrap"}}>
+      <Box sx={{display: "flex", flexWrap: "wrap", alignItems:"center", justifyContent: "center"}}>
         {currentData?.map((item, i) => {
           return(
             <GameCard 
@@ -45,10 +45,10 @@ const Games = () => {
               score={item.total_rating}
               key={item.game_id}
               style={{
-                width: 250,
+                width: 200,
                 m: 3,
               }}
-              imageSize={300}/>
+              imageSize={250}/>
           )
         })}
       </Box>
