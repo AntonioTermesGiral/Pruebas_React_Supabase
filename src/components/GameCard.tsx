@@ -54,48 +54,42 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
     return (
         <Card sx={style}>
             <CardActionArea>
-                <div
-                style={{
-                    display: "inlineBlock",
-                    overflow: "hidden",
-                    backgroundColor: "#282c34",
-                    width: "100%",
-                    height: "100%"
-                }}
-                >
-                {/* TODO Meter zoom programaticamente */}
-                <CardMedia
-                    component="img"
-                    height= {imageSize}
-                    image= {cover}
-                    alt="game image"
-                    sx={{
-                    transition: "transform .9s",
-                    "&:hover": {
-                        transform: "scale(1.1)"
-                    }
-                    }}
-                />
-                </div>
-                <CardContent>
-                <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                    <Typography gutterBottom variant="h5" component="div" fontSize={getFontSize()}>
-                        {title}
-                    </Typography>
-                    <Avatar
+                
+                <div style={{overflow: "hidden"}}>
+                    {/* TODO Meter zoom programaticamente */}
+                    <CardMedia
+                        component="img"
+                        height= {imageSize}
+                        image= {cover}
+                        alt="game image"
                         sx={{
-                            bgcolor: getScoreColor(),
-                            width: "1.5em",
-                            height: "1.5em"
+                        transition: "transform .9s",
+                        "&:hover": {
+                            transform: "scale(1.2)"
+                        }
                         }}
-                    >
-                    {verifyScore()}
-                    </Avatar>
-                </Grid>
-                {/*Cambiar por algo como estado + platforms*/}
-                <Typography variant="body2" color="text.secondary">
-                    {platforms}
-                </Typography>
+                    />
+                </div>
+                {/*Poner el heigth este tambien programaticamente */}
+                <CardContent sx={{height:"11em"}}>
+                    <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                        <Typography gutterBottom variant="h5" component="div" fontSize={getFontSize()}>
+                            {title}
+                        </Typography>
+                        <Avatar
+                            sx={{
+                                bgcolor: getScoreColor(),
+                                width: "1.5em",
+                                height: "1.5em"
+                            }}
+                        >
+                        {verifyScore()}
+                        </Avatar>
+                    </Grid>
+                    {/*Cambiar por algo como estado + platforms*/}
+                    <Typography variant="body2" color="text.secondary" sx={{mt: "5%"}}>
+                        {platforms}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>

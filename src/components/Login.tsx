@@ -35,8 +35,8 @@ const Login = () => {
     return (
         <Box component="form" display={"flex"} sx={{flexDirection: "column", alignItems: "center"}}>
 
-            <TextField id="emailInput" label="Email" variant="outlined" focused={true} inputProps={{autoComplete: 'off'}} sx={{maxWidth:"20%", flexGrow: 1, input: {color: "white"}}} onChange={(event) => {setEmail(event.target.value)}}/>
-            <TextField id="passInput" label="Password" variant="outlined" focused={true} type="password" sx={{maxWidth:"20%", mt:"2rem", input: {color: "white"}}} onChange={(event) => {setPass(event.target.value)}}/>
+            <TextField id="emailInput" label="Email" variant="outlined" focused={true} inputProps={{autoComplete: 'off'}} sx={{maxWidth:"20%", flexGrow: 1}} onChange={(event) => {setEmail(event.target.value)}}/>
+            <TextField id="passInput" label="Password" variant="outlined" focused={true} type="password" sx={{maxWidth:"20%", mt:"2rem"}} onChange={(event) => {setPass(event.target.value)}}/>
             <Link to="/Signup" style={{textDecoration: 'none'}}>
                 <p style={{fontSize: "50%", color: "blue"}}>Create an account</p>
             </Link>

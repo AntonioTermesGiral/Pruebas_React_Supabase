@@ -39,7 +39,7 @@ const NavBar = () => {
   }
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" color='primary' sx={{bgcolor: "#212121"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -71,8 +71,8 @@ const NavBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar alt="Pfp" src={vm.getCurrentProfilePic || "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"} />
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
+              <Avatar alt="Pfp" src={vm.getCurrentProfilePic || "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg"} sx={{border: "3px solid #ffffff" }}/>
             </IconButton>
             <Menu
               sx={{ mt: '45px' }}

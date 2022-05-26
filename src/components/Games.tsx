@@ -39,7 +39,7 @@ const Games = () => {
       <Box sx={{display: "flex", flexWrap: "wrap", alignItems:"center", justifyContent: "center", marginTop: "3%"}}>
         {currentData?.map((item, i) => {
           return(
-            <Tilt tiltAxis="y" glareEnable={true} glareMaxOpacity={0.1}>
+            <Tilt tiltAxis="y" glareEnable={true} glareMaxOpacity={0.1} tiltReverse={true}>
               <GameCard 
                 title={item.name}
                 cover={item.cover}
@@ -49,6 +49,7 @@ const Games = () => {
                 style={{
                   width: 200,
                   m: 3,
+                  height: "17em"
                 }}
                 imageSize={250}/>
             </Tilt>

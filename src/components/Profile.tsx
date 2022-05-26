@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import ProfileSB from "../models/ProfileModel";
 import ProfileViewmodel from "../vm/ProfileViewmodel";
+import ChipSelectorStatusTest from "./ChipSelectorStatusTest";
 
 const Profile = () => {
 
