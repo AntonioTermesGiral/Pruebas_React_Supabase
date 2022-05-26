@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+import HelpIcon from '@mui/icons-material/QuestionMarkRounded';
 
 type Props = {
     title : string,
@@ -43,6 +44,13 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
         }
     }
 
+    const verifyScore = () => {
+        if (score === -1) {
+            return <HelpIcon></HelpIcon>
+        }
+        return score
+    }
+
     return (
         <Card sx={style}>
             <CardActionArea>
@@ -50,7 +58,7 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
                 style={{
                     display: "inlineBlock",
                     overflow: "hidden",
-                    backgroundColor: "black",
+                    backgroundColor: "#282c34",
                     width: "100%",
                     height: "100%"
                 }}
@@ -61,12 +69,12 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
                     height= {imageSize}
                     image= {cover}
                     alt="game image"
-                    /*sx={{
+                    sx={{
                     transition: "transform .9s",
                     "&:hover": {
-                        transform: "scale(1.4)"
+                        transform: "scale(1.1)"
                     }
-                    }}*/
+                    }}
                 />
                 </div>
                 <CardContent>
@@ -81,7 +89,7 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
                             height: "1.5em"
                         }}
                     >
-                    {score}
+                    {verifyScore()}
                     </Avatar>
                 </Grid>
                 {/*Cambiar por algo como estado + platforms*/}
