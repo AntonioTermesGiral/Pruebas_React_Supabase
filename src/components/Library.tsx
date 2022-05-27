@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import CookieManager from "./CookieManager";
 import ProfileViewmodel from "../vm/ProfileViewmodel";
 import { observer } from "mobx-react";
 import ChipSelectorStatusTest from "./ChipSelectorStatusTest";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import StatusEnum from "./StatusEnum";
 
 type game = {
@@ -62,6 +61,23 @@ const Library = () => {
             </Grid>
           )
         })}
+        <hr/>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableBody>
+              {currentData?.map((item:any, i:number) => (
+                <TableRow
+                  key={item.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell align="left"><img src={item.game.cover} style={{width: "6em", height: "9em"}}/></TableCell>
+                  <TableCell align="left"><Typography sx={{color: "black", marginLeft: "1em", fontSize: 16}}>{item.game.name}</Typography></TableCell>
+                  <TableCell align="right"><ChipSelectorStatusTest currentStatus={StatusEnum[item.status as keyof typeof StatusEnum]}/></TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
     )
   }

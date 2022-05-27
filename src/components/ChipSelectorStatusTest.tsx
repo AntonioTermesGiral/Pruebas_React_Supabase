@@ -4,7 +4,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import StatusEnum from "./StatusEnum";
-import { Box, Theme } from "@mui/material";
+import { Box, styled, Theme } from "@mui/material";
+
+const CustomStatusSelector = styled(Select)({
+  
+});
 
 type Status = {
   name: string;
