@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material"
+import { Box, Button, FormControl, TextField } from "@mui/material"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import CookieManager from "./CookieManager"
@@ -33,7 +33,7 @@ const Login = () => {
     }
 
     return (
-        <Box component="form" display={"flex"} sx={{flexDirection: "column", alignItems: "center"}}>
+        <FormControl sx={{display:"flex", flexDirection: "column", alignItems: "center"}}>
 
             <TextField id="emailInput" label="Email" variant="outlined" focused={true} inputProps={{autoComplete: 'off'}} sx={{maxWidth:"20%", flexGrow: 1}} onChange={(event) => {setEmail(event.target.value)}}/>
             <TextField id="passInput" label="Password" variant="outlined" focused={true} type="password" sx={{maxWidth:"20%", mt:"2rem"}} onChange={(event) => {setPass(event.target.value)}}/>
@@ -42,7 +42,7 @@ const Login = () => {
             </Link>
             <Button variant="outlined" sx={{mt:"1rem"}} onClick={submit}>Submit</Button>
 
-        </Box>
+        </FormControl>
     )
 
 }

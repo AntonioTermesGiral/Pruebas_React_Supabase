@@ -1,11 +1,10 @@
 import * as React from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
 import StatusEnum from "./StatusEnum";
+import { Box, Theme } from "@mui/material";
 
 type Status = {
   name: string;
@@ -30,8 +29,8 @@ export default function ChipSelectorStatusTest({currentStatus}: props) {
 
   return (
     <div>
-      <FormControl sx={{ width: 200 }}>
-        <InputLabel id="demo-multiple-chip-label">Status</InputLabel>
+      {/**https://stackoverflow.com/questions/68275934/how-to-change-material-ui-select-menus-drop-down-colors */}
+      <Box sx={{ width: 200, display: "flex", flexDirection:"column", alignContent: "space-between"}}>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
@@ -43,21 +42,25 @@ export default function ChipSelectorStatusTest({currentStatus}: props) {
               }
             })
           }}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+          input={<OutlinedInput id="select-multiple-chip" label="Chip" sx={{"& .MuiOutlinedInput-notchedOutline": {display: "none"}, width:"9em"}}/>}
           renderValue={(selected) => (
             <Chip
               label={selected}
-              sx={{ color: statusName.color, borderColor: statusName.color, backgroundColor: "black" }}
+              sx={{ color: statusName.color, borderColor: statusName.color, backgroundColor: "black", width: "8em" }}
             />
           )}
         >
-          {statusColors.map((sts) => (
-            <MenuItem key={sts.name} value={sts.name}>
-              {sts.name}
-            </MenuItem>
-          ))}
+          {statusColors.map((sts) => {
+            if(sts.name !== statusName.name) {
+              return (
+                <MenuItem key={sts.name} value={sts.name} sx={{color: sts.color, backgroundColor: "black"}}>
+                  {sts.name}
+                </MenuItem>
+              )
+            }
+          })}
         </Select>
-      </FormControl>
+      </Box>
     </div>
   );
 }
