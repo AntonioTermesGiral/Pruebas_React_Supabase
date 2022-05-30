@@ -71,7 +71,7 @@ const GameCard = ( {title, score, platforms, cover, style, imageSize} : Props) =
                     />
                 </div>
                 {/*Poner el heigth este tambien programaticamente */}
-                <CardContent sx={{height:"11em"}}>
+                <CardContent sx={{height:"20em"}}>
                     <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
                         <Typography gutterBottom variant="h5" component="div" fontSize={getFontSize()}>
                             {title}

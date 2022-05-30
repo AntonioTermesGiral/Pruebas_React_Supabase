@@ -14,7 +14,7 @@ import { useState } from 'react';
 import ProfileViewmodel from '../vm/ProfileViewmodel';
 import { observer } from 'mobx-react';
 
-const pages = ['Games', 'Library', 'Users'];
+const pages = ['Games', 'Library', 'Users', 'LD'];
 
 const NavBar = () => {
 

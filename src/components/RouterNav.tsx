@@ -10,6 +10,7 @@ import Games from "./Games";
 import Library from "./Library";
 import Users from "./Users";
 import Profile from "./Profile";
+import LoginDialog from "./LoginDialog";
 
 const RouterNav = () => {
 
@@ -23,6 +24,7 @@ const RouterNav = () => {
                 <Route path="/Library" element={<Skeleton content={<Library />}/>}/>
                 <Route path="/Users" element={<Skeleton content={<Users />}/>}/>
                 <Route path="/Profile" element={<Skeleton content={<Profile />}/>}/>
+                <Route path="/LD" element={<Skeleton content={<LoginDialog />}/>}/>
             </Routes>
         </Router>
     )

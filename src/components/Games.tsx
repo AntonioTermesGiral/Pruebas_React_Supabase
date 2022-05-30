@@ -49,7 +49,9 @@ const Games = () => {
                 style={{
                   width: 200,
                   m: 3,
-                  height: "17em"
+                  height: "17em",
+                  maxHeight: "420px",
+                  minHeight: "420px"
                 }}
                 imageSize={250}/>
             </Tilt>
