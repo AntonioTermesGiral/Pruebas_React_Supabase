@@ -114,6 +114,7 @@ export default function LoginDialog() {
                 label="Email"
                 variant="outlined"
                 autoComplete="off"
+                name="loginEmail"
                 onChange={(e) => {
                     setLoginEmail(e.currentTarget.value)
                 }}
@@ -124,6 +125,7 @@ export default function LoginDialog() {
                 type="password"
                 variant="outlined"
                 autoComplete="off"
+                name="loginPassword"
                 onChange={(e) => {
                     setLoginPassword(e.currentTarget.value)
                 }}
@@ -138,7 +140,7 @@ export default function LoginDialog() {
                 }}}
                 sx={{ mt: "25%" }}
               >
-                Enter
+                ENTER
               </Button>
             </Box>
           </Box>
