@@ -21,7 +21,7 @@ const style = {
   p: 4,
   display: "flex",
   justifyContent: "space-evenly",
-  borderRadius: "6%"
+  borderRadius: "2em"
 };
 
 const txtInputStyle = {
