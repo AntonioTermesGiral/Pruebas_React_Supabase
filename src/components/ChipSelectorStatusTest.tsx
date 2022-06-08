@@ -46,6 +46,13 @@ export default function ChipSelectorStatusTest({currentStatus}: props) {
               }
             })
           }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                bgcolor: 'black'
+              },
+            },
+          }}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" sx={{"& .MuiOutlinedInput-notchedOutline": {display: "none"}, width:"9em"}}/>}
           renderValue={(selected) => (
             <Chip
