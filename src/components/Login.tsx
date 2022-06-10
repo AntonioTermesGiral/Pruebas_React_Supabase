@@ -32,6 +32,74 @@ const Login = () => {
 
     }
 
+    const test = async () => {
+
+        const igdbCliID = "kypiy9m30go1iycvp7uk7kvel2env3"
+        const igdbKey = "Bearer a9gbpb9sn5kiqqlvpf6uy5o1lk7uky"
+        const igdbURL = "https://api.igdb.com/v4/games/"
+
+        let headers = new URLSearchParams({"Client-ID": igdbCliID, Authorization: igdbKey})
+        let currentBody = `fields id, name, cover.url, platforms.abbreviation, platforms.name, total_rating; search "pokemon"; limit 10;`
+
+        type gameItem = {
+
+            game_id : number,
+            name: string,
+            cover: string,
+            platforms: string,
+            total_rating: number
+          
+          }
+
+        await fetch(igdbURL, {
+            method: "POST",
+            headers:  headers,
+            body: currentBody,
+            mode: 'no-cors'
+        }).then(response => response.json())
+            .then(result => {
+                let gameList : gameItem[] = []
+                result.map((element : any) => {
+
+                    let betterCover : string = element.cover.url
+                    let platforms : string = getPlatforms(element.platforms)
+                    let roundedRating : number = element.total_rating
+                    gameList.push({game_id: element.id, name: element.name, cover: betterCover, platforms: platforms, total_rating: roundedRating})
+                })
+
+                console.log(gameList)
+                return gameList
+
+            })
+            .catch(error => console.log('error', error));
+    }
+
+    const getPlatforms = (platforms : any[]) => {
+
+        let finalPlatform = ""
+
+        if (platforms !== null && platforms !== undefined) {
+
+            platforms.forEach((platform) => {
+
+                if (platform.abbreviation === null || platform.abbreviation === undefined) {
+                    finalPlatform += `${platform.name}, `
+                } else {
+                    finalPlatform += `${platform.abbreviation}, `
+                }
+
+            })
+
+        } else {
+
+            finalPlatform = ""
+
+        }
+
+        return finalPlatform
+
+    }
+
     return (
         <FormControl sx={{display:"flex", flexDirection: "column", alignItems: "center"}}>
 
@@ -41,6 +109,7 @@ const Login = () => {
                 <p style={{fontSize: "50%", color: "blue"}}>Create an account</p>
             </Link>
             <Button variant="outlined" sx={{mt:"1rem"}} onClick={submit}>Submit</Button>
+            <Button onClick={test}>test</Button>
 
         </FormControl>
     )
