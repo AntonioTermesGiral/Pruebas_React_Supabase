@@ -54,8 +54,7 @@ const Login = () => {
         await fetch(igdbURL, {
             method: "POST",
             headers:  headers,
-            body: currentBody,
-            mode: 'no-cors'
+            body: currentBody
         }).then(response => response.json())
             .then(result => {
                 let gameList : gameItem[] = []
